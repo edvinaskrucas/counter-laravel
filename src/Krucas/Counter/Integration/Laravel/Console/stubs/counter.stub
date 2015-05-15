@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateCounterTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('counter', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->string('key', 255)->nullable(false);
+            $table->decimal('value', 12, 6)->nullable(false);
+            $table->dateTime('start')->nullable(true)->default(null);
+            $table->dateTime('end')->nullable(true)->default(null);
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('counter');
+    }
+}
