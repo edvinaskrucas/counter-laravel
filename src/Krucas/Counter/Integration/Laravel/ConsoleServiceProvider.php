@@ -22,6 +22,8 @@ class ConsoleServiceProvider extends ServiceProvider
         $this->app->singleton('command.counter.table', function ($app) {
             return new TableCommand($app['files'], $app['composer']);
         });
+
+        $this->commands(array('command.counter.table'));
     }
 
     /**
