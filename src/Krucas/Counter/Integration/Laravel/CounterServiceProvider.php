@@ -24,6 +24,8 @@ class CounterServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/../../../../config/counter.php', 'counter');
+
         $this->app->singleton('Krucas\Counter\Integration\Laravel\DatabaseRepository', function ($app) {
             return new DatabaseRepository($app['db'], $app['config']->get('counter.table'));
         });
