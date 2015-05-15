@@ -1,7 +1,7 @@
 <?php namespace Krucas\Counter\Integration\Laravel\Console;
 
 use Illuminate\Console\Command;
-use Illuminate\Contracts\Filesystem\Filesystem;
+use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Composer;
 
 class TableCommand extends Command
@@ -23,7 +23,7 @@ class TableCommand extends Command
     /**
      * The filesystem instance.
      *
-     * @var \Illuminate\Contracts\Filesystem\Filesystem
+     * @var \Illuminate\Filesystem\Filesystem
      */
     protected $files;
 
@@ -35,7 +35,7 @@ class TableCommand extends Command
     /**
      * Create a new queue job table command instance.
      *
-     * @param \Illuminate\Contracts\Filesystem\Filesystem $files
+     * @param \Illuminate\Filesystem\Filesystem $files
      * @param Composer $composer
      */
     public function __construct(Filesystem $files, Composer $composer)
