@@ -26,16 +26,18 @@ class CounterServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__ . '/../../../../config/counter.php', 'counter');
 
-        $this->app->singleton('Krucas\Counter\Integration\Laravel\DatabaseRepository', function ($app) {
-            return new DatabaseRepository($app['db']->connection(), $app['config']->get('counter.table'));
+        $this->app->singleton('counter', function ($app) {
+            /** @var \Krucas\Counter\Integration\Laravel\RepositoryManager $manager */
+            $manager = $app['counter.repository.manager'];
+
+            return new Counter($manager->driver($app['config']->get('counter.driver')));
         });
 
-        $this->app->singleton('counter', function ($app) {
-            $repositoryClass = $app['config']->get('counter.repository');
-
-            return new Counter($app->make($repositoryClass));
+        $this->app->singleton('counter.repository.manager', function ($app) {
+            return new RepositoryManager($app);
         });
 
         $this->app->alias('counter', 'Krucas\Counter\Counter');
+        $this->app->alias('counter.repository.manager', 'Krucas\Counter\Integration\Laravel\RepositoryManager');
     }
 }
