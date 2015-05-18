@@ -4,22 +4,28 @@ return array(
 
     /*
     |--------------------------------------------------------------------------
-    | Counter repository to store values.
+    | Counter repository driver.
     |--------------------------------------------------------------------------
     |
-    | Counter service will resolve defined repository class.
+    | Counter service will resolve defined driver. Available drivers: array, database
     |
     */
-    'repository' => 'Krucas\Counter\Integration\Laravel\DatabaseRepository',
+    'driver' => 'database',
 
     /*
     |--------------------------------------------------------------------------
-    | Table name for DatabaseRepository.
+    | Configuration for database driver.
     |--------------------------------------------------------------------------
     |
-    | Database repository will use this table to store values.
+    | Driver will use this configuration for init.
     |
     */
-    'table' => 'counter',
+    'database' => array(
+
+        'connection' => null,
+
+        'table' => 'counter',
+
+    ),
 
 );
