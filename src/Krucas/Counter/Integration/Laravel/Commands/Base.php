@@ -70,11 +70,13 @@ abstract class Base implements ShouldBeQueued, SelfHandling
      * Set queue name to dispatch commands to.
      *
      * @param string $queue Queue name.
-     * @return void
+     * @return \Krucas\Counter\Integration\Laravel\Commands\Base
      */
     public function setQueue($queue)
     {
         $this->queue = $queue;
+
+        return $this;
     }
 
     /**
